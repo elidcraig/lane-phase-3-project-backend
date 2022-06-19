@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 2022_06_19_163313) do
 
   create_table "vehicles", force: :cascade do |t|
     t.string "make"
-    t.string "module"
+    t.string "model"
     t.integer "year"
     t.string "image_url"
     t.text "description"

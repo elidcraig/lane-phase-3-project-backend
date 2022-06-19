@@ -2,7 +2,7 @@ class CreateVehicles < ActiveRecord::Migration[6.1]
   def change
     create_table :vehicles do |t|
       t.string :make
-      t.string :module
+      t.string :model
       t.integer :year
       t.string :image_url
       t.text :description
