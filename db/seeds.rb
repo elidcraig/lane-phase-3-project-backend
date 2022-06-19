@@ -17,7 +17,18 @@ puts "🌱 Seeding data..."
 end
 
 25.times do
-  Guest.create(username: Faker::Internet.username)
+  guest = Guest.create(username: Faker::Internet.username)
+  vehicle_ids = Vehicle.all.ids
+  rand(0..1).times do
+    start_date = Faker::Date.forward(days: 30)
+    end_date = Faker::Date.between(from: start_date, to: Faker::Date.forward(days: 40))
+    Reservation.create(
+      guest_id: guest.id,
+      vehicle_id: vehicle_ids.sample,
+      start_date: start_date,
+      end_date: end_date
+    )
+  end
 end
 
 puts "✅ Done seeding!"
