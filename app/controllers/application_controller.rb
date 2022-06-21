@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
 
   get "/vehicles/:id" do
     vehicle = Vehicle.find(params[:id])
-    vehicle.to_json
+    vehicle.to_json #also send host & res. associated with vehicle
   end
 
   get "/hosts/:id" do
@@ -32,11 +32,14 @@ class ApplicationController < Sinatra::Base
   end
 
   patch "/reservations/:id" do
-    # change a reservation
+    reservation = Reservation.find(params[:id])
+    reservation.udpate(params)
+    reservation.to_json
   end
 
   delete "/reservations/:id" do
-    Reservation.destroy(params[:id])
+    reservation = Reservation.destroy(params[:id])
+    reservation.to_json
   end
 
 end
