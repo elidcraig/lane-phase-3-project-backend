@@ -33,7 +33,7 @@ class ApplicationController < Sinatra::Base
 
   patch "/reservations/:id" do
     reservation = Reservation.find(params[:id])
-    reservation.udpate(params)
+    reservation.update(params)
     reservation.to_json
   end
 
