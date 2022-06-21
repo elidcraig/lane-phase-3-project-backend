@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
 
   get "/guests/:id" do
     guest = Guest.find(params[:id])
-    guest.to_json
+    guest.to_json(include: :reservations)
   end
 
   post "/reservations" do
