@@ -13,7 +13,7 @@ class ApplicationController < Sinatra::Base
 
   get "/hosts/:id" do
     host = Host.find(params[:id])
-    host.to_json # also send vehicles associated with this host
+    host.to_json(include: :vehicles)
   end
 
   get "/guests/:id" do
