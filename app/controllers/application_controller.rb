@@ -33,13 +33,20 @@ class ApplicationController < Sinatra::Base
 
   patch "/reservations/:id" do
     reservation = Reservation.find(params[:id])
-    reservation.update(params)
+    reservation.update(reservation_params)
     reservation.to_json
   end
 
   delete "/reservations/:id" do
     reservation = Reservation.destroy(params[:id])
     reservation.to_json
+  end
+
+  private
+
+  def reservation_params
+    allowed_params = %w(start_date end_date)
+    params.select {|param, value| allowed_params.include?(param)}
   end
 
 end
