@@ -5,7 +5,7 @@ class ApplicationController < Sinatra::Base
   
   get "/vehicles" do
     vehicles = Vehicle.all
-    vehicles.to_json
+    vehicles.to_json(include: :host)
   end
 
   get "/vehicles/:id" do
