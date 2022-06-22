@@ -1,3 +1,5 @@
+require 'pry'
+
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
   
@@ -19,6 +21,16 @@ class ApplicationController < Sinatra::Base
   get "/guests/:id" do
     guest = Guest.find(params[:id])
     guest.to_json(include: :reservations)
+  end
+
+  post "/guests" do
+    unless Guest.is_existing_user?(params[:username])
+      new_guest = Guest.create(username: params[:username])
+      new_guest.to_json
+    else
+      guest = Guest.find_by(username: params[:username])
+      guest.to_json
+    end
   end
 
   post "/reservations" do
