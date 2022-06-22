@@ -6,6 +6,7 @@ puts "🌱 Seeding data..."
     #create instances of Vehicle belonging to Host
     make = Faker::Vehicle.make
     Vehicle.create(
+      image_url: 'https://static.cargurus.com/images/site/2009/04/09/12/32/1995_buick_lesabre_custom-pic-21135-640x480.jpeg',
       make: make,
       model: Faker::Vehicle.model(make_of_model: make),
       year: Faker::Vehicle.year,
