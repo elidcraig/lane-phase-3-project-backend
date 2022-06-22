@@ -20,7 +20,7 @@ class ApplicationController < Sinatra::Base
 
   get "/guests/:id" do
     guest = Guest.find(params[:id])
-    guest.to_json(include: :reservations)
+    guest.to_json(include: [:reservations => {include: :vehicle}])
   end
 
   post "/guests" do
@@ -32,7 +32,7 @@ class ApplicationController < Sinatra::Base
       new_guest.to_json
     else
       guest = Guest.find_by(username: params[:username])
-      guest.to_json
+      guest.to_json(include: [:reservations => {include: :vehicle}])
     end
   end
 
