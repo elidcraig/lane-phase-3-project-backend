@@ -1,7 +1,7 @@
 puts "🌱 Seeding data..."
 
 10.times do
-  host = Host.create(username: Faker::Internet.username)
+  host = Host.create(username: Faker::Internet.username, profile_image_url: Faker::Avatar.image)
   rand(1..7).times do
     #create instances of Vehicle belonging to Host
     make = Faker::Vehicle.make
@@ -18,7 +18,7 @@ puts "🌱 Seeding data..."
 end
 
 25.times do
-  guest = Guest.create(username: Faker::Internet.username)
+  guest = Guest.create(username: Faker::Internet.username, profile_image_url: Faker::Avatar.image)
   vehicle_ids = Vehicle.all.ids
   rand(0..1).times do
     start_date = Faker::Date.forward(days: 30)
