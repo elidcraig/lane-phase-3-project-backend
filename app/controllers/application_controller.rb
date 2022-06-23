@@ -46,6 +46,11 @@ class ApplicationController < Sinatra::Base
     end
   end
 
+  get "/reservations/:id" do
+    reservation = Reservation.find(params[:id])
+    reservation.to_json
+  end
+
   post "/reservations" do
     reservation = Reservation.create(
       start_date: params[:start_date],
