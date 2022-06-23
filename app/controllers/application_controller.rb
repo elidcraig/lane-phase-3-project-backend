@@ -8,21 +8,6 @@ class ApplicationController < Sinatra::Base
     vehicles.to_json(include: :host)
   end
 
-  get "/vehicles/:id" do
-    vehicle = Vehicle.find(params[:id])
-    vehicle.to_json #also send host & res. associated with vehicle
-  end
-
-  get "/hosts/:id" do
-    host = Host.find(params[:id])
-    host.to_json(include: :vehicles)
-  end
-
-  # get "/guests/:id" do
-  #   guest = Guest.find(params[:id])
-  #   guest.to_json(include: [:reservations => {include: :vehicle}])
-  # end
-
   get "/guests/active" do
     guest = Guest.find_logged_in_user
     if guest 
