@@ -18,9 +18,18 @@ class ApplicationController < Sinatra::Base
     host.to_json(include: :vehicles)
   end
 
-  get "/guests/:id" do
-    guest = Guest.find(params[:id])
-    guest.to_json(include: [:reservations => {include: :vehicle}])
+  # get "/guests/:id" do
+  #   guest = Guest.find(params[:id])
+  #   guest.to_json(include: [:reservations => {include: :vehicle}])
+  # end
+
+  get "/guests/active" do
+    guest = Guest.find_logged_in_user
+    if guest 
+      guest.to_json(include: [:reservations => {include: :vehicle}])
+    else
+      status 404
+    end
   end
 
   post "/guests" do
@@ -32,7 +41,7 @@ class ApplicationController < Sinatra::Base
       )
       new_guest.to_json
     else
-      guest = Guest.find_by(username: params[:username])
+      guest = Guest.log_in_new_user(params[:username])
       guest.to_json(include: [:reservations => {include: :vehicle}])
     end
   end
