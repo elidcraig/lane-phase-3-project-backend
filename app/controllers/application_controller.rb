@@ -39,6 +39,7 @@ class ApplicationController < Sinatra::Base
         profile_image_url: Faker::Avatar.image,
         logged_in: true
       )
+      Guest.log_in_new_user(params[:username])
       new_guest.to_json
     else
       guest = Guest.log_in_new_user(params[:username])
