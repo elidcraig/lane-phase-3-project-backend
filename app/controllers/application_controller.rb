@@ -27,7 +27,8 @@ class ApplicationController < Sinatra::Base
     unless Guest.is_existing_user?(params[:username])
       new_guest = Guest.create(
         username: params[:username],
-        profile_image_url: Faker::Avatar.image
+        profile_image_url: Faker::Avatar.image,
+        logged_in: true
       )
       new_guest.to_json
     else

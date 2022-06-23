@@ -18,7 +18,7 @@ puts "🌱 Seeding data..."
 end
 
 25.times do
-  guest = Guest.create(username: Faker::Internet.username, profile_image_url: Faker::Avatar.image)
+  guest = Guest.create(username: Faker::Internet.username, profile_image_url: Faker::Avatar.image, logged_in: false)
   vehicle_ids = Vehicle.all.ids
   rand(0..1).times do
     start_date = Faker::Date.forward(days: 30)

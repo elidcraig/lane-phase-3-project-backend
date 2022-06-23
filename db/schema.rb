@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_19_163313) do
+ActiveRecord::Schema.define(version: 2022_06_23_031602) do
 
   create_table "guests", force: :cascade do |t|
     t.string "username"
     t.string "profile_image_url"
+    t.boolean "logged_in"
   end
 
   create_table "hosts", force: :cascade do |t|
