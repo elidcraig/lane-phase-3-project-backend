@@ -2,6 +2,16 @@ require 'pry'
 
 class ApplicationController < Sinatra::Base
   set :default_content_type, 'application/json'
+
+  get "/vehicles/by_price_lowest" do
+    vehicles = Vehicle.all.order(:price_per_day)
+    vehicles.to_json(include: :host)
+  end
+
+  get "/vehicles/by_price_highest" do
+    vehicles = Vehicle.all.order(price_per_day: :desc)
+    vehicles.to_json(include: :host)
+  end
   
   get "/vehicles" do
     vehicles = Vehicle.all
